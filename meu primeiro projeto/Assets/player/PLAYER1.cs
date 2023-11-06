@@ -8,11 +8,14 @@ public class PLAYER1 : MonoBehaviour
     public bool noChao;
     public int velocidade = 10;
     public int ForcaPulo = 7;
+    private AudioSource source;
+    public AudioClip clipPulo;
     public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         TryGetComponent(out rb);
+        TryGetComponent(out source);
         Debug.Log("Começou");
     }
 
@@ -38,6 +41,7 @@ public class PLAYER1 : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Space) && noChao)//se apertar espaço aplica força
         {
+            source.PlayOneShot(clipPulo);
             rb.AddForce(Vector3.up * ForcaPulo, ForceMode.Impulse);
             noChao = false;
         }
